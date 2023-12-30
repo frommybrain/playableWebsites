@@ -1,11 +1,14 @@
 import React from 'react';
-
+import styles from './auth.module.scss'
 const LoginButton = () => {
-  const handleLogin = () => {
-    window.location.href = '/api/auth/twitter';
-  };
+  
 
-  return <button onClick={handleLogin}>Login with Twitter</button>;
+  return (
+    <button className={styles.loginButton} onClick={() => (window.location.href = '/api/auth/google')}>
+      Login with Google
+    </button>
+  );
 };
+
 
 export default LoginButton;
