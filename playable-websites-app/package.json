@@ -13,6 +13,7 @@
     "@react-three/fiber": "^8.15.12",
     "@vercel/postgres": "^0.5.1",
     "ecctrl": "^1.0.50",
+    "jsonwebtoken": "^9.0.2",
     "next": "14.0.4",
     "next-connect": "^1.0.0",
     "passport": "^0.7.0",
