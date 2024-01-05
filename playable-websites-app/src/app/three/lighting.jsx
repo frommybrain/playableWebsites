@@ -5,9 +5,9 @@ const Lighting = () => {
 
     return (
         <>
-            <Environment preset="warehouse" />
+            <Environment preset="city" />
             <directionalLight
-                intensity={0.7}
+                intensity={1.7}
                 color={'#FFFFED'}
                 castShadow
                 shadow-bias={-0.0004}

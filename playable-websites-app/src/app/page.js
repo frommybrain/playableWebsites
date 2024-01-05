@@ -10,7 +10,6 @@ export default function Home() {
   const [searchParams] = useSearchParams();
 
   useEffect(() => {
-    // Ensure this runs only on the client side
     if (typeof window !== 'undefined' && searchParams && searchParams.length > 0) {
       const queryParams = new URLSearchParams(window.location.search);
       const service = queryParams.get('service');

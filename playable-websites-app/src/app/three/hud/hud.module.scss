@@ -16,8 +16,10 @@
     left: 0;
     z-index: 500;
     pointer-events: none;
-    background:rgba(255,0,0,0.1)
 }
 .scoreContainer, .loggedInContainer {
     color:#000000;
+}
+.testButton {
+    pointer-events: all;
 }

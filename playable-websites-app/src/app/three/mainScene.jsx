@@ -1,13 +1,19 @@
-import { KeyboardControls, Hud } from '@react-three/drei'
+import { KeyboardControls, Hud, OrbitControls, PerspectiveCamera } from '@react-three/drei'
 import Ecctrl, { EcctrlAnimation } from "ecctrl";
-import { Physics } from '@react-three/rapier'
-import { Suspense } from 'react';
-import TestMap from './maps/testMap';
+import { Physics, RigidBody } from '@react-three/rapier'
+import { Suspense, useState, useEffect } from 'react';
+import Terrain from './maps/testTerrain1';
 import TestCharacter from './character/testCharacter';
 import Lighting from './lighting';
-import SkySphere from './sky';
+import useTerrainStore from '../zustand/terrainStore';
 
 const MainScene = () => {
+    const { editorMode } = useTerrainStore();
+    const [enableCharacter, setEnableCharacter] = useState(!editorMode);
+
+    useEffect(() => {
+        setEnableCharacter(!editorMode);
+    }, [editorMode]);
 
     const keyboardMap = [
         { name: "forward", keys: ["ArrowUp", "KeyW"] },
@@ -21,24 +27,36 @@ const MainScene = () => {
     return (
         <>
             <Lighting />
-            <SkySphere />
-
+            <OrbitControls makedefault />
             <Physics timeStep="vary">
                 <Suspense fallback={null}>
-                    <KeyboardControls map={keyboardMap}>
-                        <Ecctrl 
-                            debug
-                        >
-                            <TestCharacter />
-                        </Ecctrl>
+
+                    <KeyboardControls enabled={enableCharacter} map={keyboardMap}>
+                        {/*}
+                            {enableCharacter && (
+                            */}
+                        {/*<Ecctrl>
+                                    <TestCharacter />
+                        </Ecctrl>*/}
+                        {/*}
+                            )}
+                        */}
                     </KeyboardControls>
-                    <TestMap />
+
+                    {/* Sphere for some simple rapier testing */}
+                    <RigidBody type="dynamic" position={[0, 30, 0]} restitution={0.9}>
+                        <mesh castShadow>
+                            <sphereGeometry args={[0.8, 32, 32]} />
+                            <meshStandardMaterial color="red" />
+                        </mesh>
+                    </RigidBody>
+
+                    <Terrain />
+
                 </Suspense>
             </Physics>
-
-
         </>
-    )
-}
+    );
+};
 
 export default MainScene;

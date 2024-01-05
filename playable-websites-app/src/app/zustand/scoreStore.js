@@ -1,5 +1,5 @@
 // scoreStore.js
-import create from 'zustand'
+import { create } from 'zustand'
 
 const useScoreStore = create(set => ({
   score: 0,

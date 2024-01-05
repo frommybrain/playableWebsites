@@ -1,4 +1,5 @@
 import { Canvas } from '@react-three/fiber'
+import { ACESFilmicToneMapping } from 'three';
 import styles from './three.module.scss'
 import MainScene from './mainScene'
 import MainSceneHud from './hud/hud'
@@ -9,7 +10,7 @@ const MainCanvas = () => {
         <div className={styles.canvasContainer}>
             <Canvas
                 className={styles.canvas}
-                dpr={1}
+                dpr={[1,2]}
                 shadows
                 camera={{
                     near: 1,
@@ -20,9 +21,9 @@ const MainCanvas = () => {
                 <Hud>
                     <MainScene />
                 </Hud>
-                <Hud renderPriority={2}>
+                {/*<Hud renderPriority={2}>
                     <MainSceneHud />
-                </Hud>
+            </Hud>*/}
             </Canvas>
         </div>
     )
