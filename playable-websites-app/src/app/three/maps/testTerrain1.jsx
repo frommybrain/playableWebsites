@@ -16,7 +16,7 @@ const Terrain = () => {
     const noise = useFBM(generation.Scale);
     const terrainWidth = 80;
     const terrainHeight = 80;
-    const segments = 20;
+    const segments = 256;
     const heights = new Array((segments + 1) * (segments + 1)).fill(0);
 
 

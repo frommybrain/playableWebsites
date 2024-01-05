@@ -27,23 +27,23 @@ const MainScene = () => {
     return (
         <>
             <Lighting />
-            <OrbitControls makedefault />
+            <PerspectiveCamera makeDefault position={[0, 50, 100]} /> {/* Adjust the position as needed */}
+            <OrbitControls />
             <Physics timeStep="vary">
                 <Suspense fallback={null}>
-
+                    {/* Keyboard and character controls */}
                     <KeyboardControls enabled={enableCharacter} map={keyboardMap}>
+                        {/* Conditionally render the character */}
                         {/*}
-                            {enableCharacter && (
-                            */}
-                        {/*<Ecctrl>
-                                    <TestCharacter />
-                        </Ecctrl>*/}
-                        {/*}
-                            )}
+                        {enableCharacter && (
+                            <Ecctrl>
+                                <TestCharacter />
+                            </Ecctrl>
+                        )}
                         */}
                     </KeyboardControls>
 
-                    {/* Sphere for some simple rapier testing */}
+                    {/* Sphere for physics testing */}
                     <RigidBody type="dynamic" position={[0, 30, 0]} restitution={0.9}>
                         <mesh castShadow>
                             <sphereGeometry args={[0.8, 32, 32]} />
@@ -51,8 +51,8 @@ const MainScene = () => {
                         </mesh>
                     </RigidBody>
 
+                    {/* Terrain component */}
                     <Terrain />
-
                 </Suspense>
             </Physics>
         </>
