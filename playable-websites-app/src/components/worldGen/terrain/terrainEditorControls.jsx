@@ -56,7 +56,7 @@ const TerrainEditor = () => {
       <Box>
         <Text mb="2">Threshold: {generation.Threshold.toFixed(3)}</Text>
         <Slider
-          min={0.25}
+          min={0}
           max={0.4}
           step={0.01}
           defaultValue={generation.Threshold}

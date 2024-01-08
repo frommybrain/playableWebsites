@@ -5,19 +5,19 @@ const Lighting = () => {
 
     return (
         <>
-            <Environment preset="city" />
+            {/*<Environment preset="city" />*/}
             <directionalLight
-                intensity={1.7}
+                intensity={1.0}
                 color={'#FFFFED'}
                 castShadow
-                shadow-bias={-0.0004}
-                position={[-20, 20, 20]}
-                shadow-camera-top={20}
-                shadow-camera-right={20}
-                shadow-camera-bottom={-20}
-                shadow-camera-left={-20}
+                shadow-bias={-0.0001}
+                position={[-20, 50, 20]}
+                shadow-camera-top={10}
+                shadow-camera-right={10}
+                shadow-camera-bottom={-10}
+                shadow-camera-left={-10}
             />
-            <ambientLight intensity={0.2} />
+            <hemisphereLight intensity={1} />
 
             
 

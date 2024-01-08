@@ -4,13 +4,20 @@ import styles from './three.module.scss'
 import MainScene from './mainScene'
 import MainSceneHud from './hud/hud'
 import { Hud } from '@react-three/drei'
+import { PCFSoftShadowMap, sRGBEncoding } from "three";
 
 const MainCanvas = () => {
     return (
         <div className={styles.canvasContainer}>
             <Canvas
                 className={styles.canvas}
-                dpr={[1,2]}
+                gl={{
+                    antialias: true,
+                    shadowMap: {
+                      enabled: true,
+                      type: PCFSoftShadowMap,
+                    },
+                  }}
                 shadows
                 camera={{
                     near: 1,

@@ -1,4 +1,5 @@
 // test using HeightFieldCollider
+// Works for a rigibody such as a ball - but doesn't work with the ecctrl package - the caharacter moves through it
 import React, { useRef, useEffect, useState } from 'react';
 import { RigidBody, HeightfieldCollider, MeshCollider, AnyCollider } from '@react-three/rapier';
 import { useThree, useFrame, extend } from '@react-three/fiber';
@@ -19,7 +20,6 @@ const Terrain = () => {
     const segments = 256;
     const heights = new Array((segments + 1) * (segments + 1)).fill(0);
 
-
     useEffect(() => {
         const geometry = new THREE.PlaneGeometry(terrainWidth, terrainHeight, segments, segments);
         const positions = geometry.attributes.position.array;
@@ -37,25 +37,24 @@ const Terrain = () => {
             heights[j] = height;
         }
 
-        console.log('Heights array:', heights);
-
         geometry.computeVertexNormals();
         meshRef.current.geometry = geometry;
     }, [generation, noise]);
 
     return (
-        <RigidBody type="fixed" colliders={false} rotation={[-Math.PI / 2, 0, 0]} position={[0, -20, 0]}>
-
+        <RigidBody type="fixed" colliders={false} rotation={[-Math.PI / 2, 0, 0]} >
             <mesh ref={meshRef} castShadow receiveShadow>
                 <terrainShaderMaterial key={TerrainShaderMaterial.key} side={2}/>
-                {/*<meshStandardMaterial color="white" side={2} roughness={0.4} wireframe/>*/}
             </mesh>
-            <AnyCollider shape="heightfield"
+            
+            <AnyCollider 
+            rotation={[-Math.PI / 2, 0, 0]} 
+            shape="heightfield"
                 args={[
                     segments,
                     segments,
                     heights,
-                    { x: terrainWidth / segments, y: 1, z: terrainHeight / segments }
+                    { x: terrainWidth, y: 1, z: terrainHeight }
                 ]}
             />
         </RigidBody>
